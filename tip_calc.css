@@ -1,0 +1,13 @@
+.boxed {
+	border: 1px solid green;
+}
+.resultbox {
+	border: 1px solid blue;
+}
+h2 {
+	color:black;
+}
+
+td {
+	color:black;
+}

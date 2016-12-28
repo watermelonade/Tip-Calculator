@@ -1,0 +1,32 @@
+<html>
+<head>
+	<link rel="stylesheet" href="test.css">
+
+	<title>Welcome</title>
+</head>
+<body>
+	<div class="boxed">
+	<h2>Tip Calculator</h2>
+	<form action="tip_calc.php" method="post">
+		<table border="0">
+		<tr>
+			<td>Bill subtotal:</td>
+			<td><input type="text" name="bill" value="0" /></td>
+		</tr>
+		
+		<td>Tip percentage:</td>
+		<td><input type="radio" name="tip" value=".10"/> 10% 
+		<input type="radio" name="tip" value=".15"/> 15% 
+		<input type="radio" name="tip" value=".20"/> 20% </td>
+		
+		<tr>
+			<td># of People:</td>
+			<td><input type="text" name="num_people" value="1" /> </td>
+		</tr><tr>
+			<td><input type="submit" name="calculate" value="Calculate" /></td>
+		</tr>
+		</table>
+	</form>
+	</div>
+</body>
+</html>
