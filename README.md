@@ -28,9 +28,8 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-[!Walkthrough](https://github.com/watermelonade/Tip-Calculator/blob/master/demo.gif)
+[Walkthrough](https://github.com/watermelonade/Tip-Calculator/blob/master/demo.gif)
 
-<img src='http://imgur.com/a/C3LzU' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
