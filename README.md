@@ -22,11 +22,13 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Implemented full-scale feng shui.
+* [x] Full-scale feng shui.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+
+[!Walkthrough](https://github.com/watermelonade/Tip-Calculator/blob/master/demo.gif)
 
 <img src='http://imgur.com/a/C3LzU' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
