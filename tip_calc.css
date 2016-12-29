@@ -1,9 +1,31 @@
-.boxed {
-	border: 1px solid green;
+html {
+	
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
 }
-.resultbox {
-	border: 1px solid blue;
+
+body {
+	background-image:url("kitties.jpg");
+	
 }
+
+.container {
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+	background: grey;
+	
+	border: 25px solid green;
+	padding: 25px;
+	margin: 25px;
+}
+.child {
+	border: 5px solid blue;
+	width: 275 px;
+	padding: 25px;
+}
+
+
+
 h2 {
 	color:black;
 }
