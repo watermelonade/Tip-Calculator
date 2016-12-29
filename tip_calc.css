@@ -34,21 +34,34 @@ td {
 	color:black;
 }
 
+dl {
+  width: 40%;
+  overflow: hidden;
+}
 
 dt { 
-	display:block; 
-	float:left;
-	width:250px; 
-	text-align: right;
+  float: left;
+  width: 134;
+  /* adjust the width; make sure the total of both is 100% */
+  background: #ff00ff;
+  padding: 0;
+  margin: 0 
+
+	
 	
 }
 
 dt:after{
 	content:':';
-	
+
 }
 
 dd {
-	display:block;
-	float:left;
+  float: left;
+  width: 134px;
+  /* adjust the width; make sure the total of both is 100% */
+  background: #ff7f50;
+  padding: 0;
+  margin: 0;
+
 }

@@ -22,7 +22,7 @@
 			<?php } ?>
 		<tr>
 		<td></td>
-			<td><input type="radio" name="tip" id="rad" <?php if(isset($_POST['ctip']) && $_POST['ctip'] == 'No')  echo ' checked="checked"';?> value="">Custom<input type="text" onfocus="document.getElementById('rad').checked = true;" name="ctip" placeholder="Enter Amount" />%</td>
+			<td><input type="radio" name="tip" id="rad" <?php if(isset($_POST['ctip']) && $_POST['ctip'] == 'No')  echo ' checked="checked"';?> value="">Custom<input type="text" onfocus="document.getElementById('rad').checked = true;" name="ctip" value="<?php echo isset($_POST['ctip']) ? $_POST['ctip'] : '' ?>" placeholder="Enter Amount" />%</td>
 		</tr>
 		<tr>
 			<td># of People:</td>
@@ -54,9 +54,9 @@
 			if(!$stip && !$sbill && !empty($bill) && $bill > 0 && $tip > 0)
 			{
 			?>
-			<d1>
-				<dt>Tip</dt><dd><?php echo "$" . round($tip*$bill,2); ?></dd>
-				<br><dt>Total</dt><dd><?php echo "$" . round($tip*$bill + $bill,2);?></dd>
+			<dl>
+				<dt>Tip</dt><dd><?php echo "$"; printf("%.2f", $tip*$bill); ?></dd>
+				<br><dt>Total</dt><dd><?php echo "$"; printf("%.2f",$tip*$bill + $bill);?></dd><br>
 			
 			<?php 
 			if(isset($_POST['num_people'])) 
@@ -64,12 +64,12 @@
 				$split = $_POST['num_people'];
 				if($split > 1)
 				{
-					?><br><dt>Tip per person</dt><dd><?php echo " $" . round(($tip*$bill)/$split,2);?></dd>
-					<br><dt>Total per person</dt><dd><?php echo " $" . round(round(($tip*$bill + $bill)/$split,2));?></dd><br><?php
+					?><br><dt>Tip per person</dt><dd><?php echo " $"; printf("%.2f", ($tip*$bill)/$split);?></dd>
+					<br><dt>Total per person</dt><dd><?php echo " $"; printf("%.2f", ($tip*$bill + $bill)/$split);?></dd><br><?php
 				}
 			}?>
 			
-			</d1>
+			</dl>
 			<?php 
 			} else {
 				if(empty($sbill) && $bill > 0){
