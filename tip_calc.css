@@ -33,3 +33,22 @@ h2 {
 td {
 	color:black;
 }
+
+
+dt { 
+	display:block; 
+	float:left;
+	width:250px; 
+	text-align: right;
+	
+}
+
+dt:after{
+	content:':';
+	
+}
+
+dd {
+	display:block;
+	float:left;
+}

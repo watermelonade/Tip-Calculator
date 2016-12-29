@@ -22,13 +22,13 @@
 			<?php } ?>
 		<tr>
 		<td></td>
-			<td><input type="radio" name="tip">Custom<input type="text" name="tip" />%</td>
+			<td><input type="radio" name="tip" id="rad" <?php if(isset($_POST['ctip']) && $_POST['ctip'] == 'No')  echo ' checked="checked"';?> value="">Custom<input type="text" onfocus="document.getElementById('rad').checked = true;" name="ctip" placeholder="Enter Amount" />%</td>
 		</tr>
 		<tr>
 			<td># of People:</td>
 			<td><input type="text" name="num_people" value="1" /> </td>
 		</tr><tr>
-			<center><td><input type="submit" name="calculate" value="Calculate" /></td></center>
+			<td><br><input type="submit" name="calculate" id="s_button" value="Calculate" style="width:100px; text-align:center; position:relative;  left: 140px; " /><br></td>
 		</tr>
 		</table>
 	</form>
@@ -42,16 +42,21 @@
 			$tip = $_POST['tip']; 
 			$bill = $_POST["bill"]; 
 			
+			if(empty($tip) && isset($_POST['ctip']))
+				$tip = $_POST['ctip'];
+			
 			if($tip > 1)
-				$tip = 1/$tip;
+				$tip = $tip/100;
 			
 			$stip = preg_replace("[^-?\\d+(\\.\\d+)?]","",$tip);
 			$sbill = preg_replace("[^-?\\d+(\\.\\d+)?]","",$bill);
-			if(!$stip && !$sbill && !empty($bill) )
+			
+			if(!$stip && !$sbill && !empty($bill) && $bill > 0 && $tip > 0)
 			{
 			?>
-			<td> <?php echo "Tip: $" . round($tip*$bill,2) . "\n"; ?></td><br>
-			<td> <?php echo "Total: $" . round($tip*$bill + $bill,2);?></td>
+			<d1>
+				<dt>Tip</dt><dd><?php echo "$" . round($tip*$bill,2); ?></dd>
+				<br><dt>Total</dt><dd><?php echo "$" . round($tip*$bill + $bill,2);?></dd>
 			
 			<?php 
 			if(isset($_POST['num_people'])) 
@@ -59,17 +64,19 @@
 				$split = $_POST['num_people'];
 				if($split > 1)
 				{
-					echo "\nTip per person   : " . round(($tip*$bill)/$split,2);
-					echo "\nTotal per person : " . round(round(($tip*$bill + $bill)/$split,2));
+					?><br><dt>Tip per person</dt><dd><?php echo " $" . round(($tip*$bill)/$split,2);?></dd>
+					<br><dt>Total per person</dt><dd><?php echo " $" . round(round(($tip*$bill + $bill)/$split,2));?></dd><br><?php
 				}
 			}?>
 			
+			</d1>
 			<?php 
 			} else {
-				if($stip)
+				if(empty($sbill) && $bill > 0){
 					echo "ERROR: Please enter a valid tip. \n ";
-				else
+				}else{
 					echo "ERROR: Please enter a valid bill. \n ";
+				}
 			}
 		}  ?>
 	</div>
