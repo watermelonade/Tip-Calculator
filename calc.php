@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td># of People:</td>
-			<td><input type="text" name="num_people" value="1" /> </td>
+			<td><input type="text" name="num_people" value="<?php echo isset($_POST['num_people']) ? $_POST['num_people'] : 1 ?>" /> </td>
 		</tr><tr>
 			<td><br><input type="submit" name="calculate" id="s_button" value="Calculate" style="width:100px; text-align:center; position:relative;  left: 140px; " /><br></td>
 		</tr>
@@ -41,18 +41,19 @@
 			
 			$tip = $_POST['tip']; 
 			$bill = $_POST["bill"]; 
+			$split = $_POST['num_people'];
 			
 			if(empty($tip) && isset($_POST['ctip']))
 				$tip = $_POST['ctip'];
 			
-			if($tip > 1)
-				$tip = $tip/100;
-			
 			$stip = preg_replace("[^-?\\d+(\\.\\d+)?]","",$tip);
 			$sbill = preg_replace("[^-?\\d+(\\.\\d+)?]","",$bill);
+			$tmp_split = preg_replace("[^-?\\d+(\\.\\d+)?]","",$split);
 			
-			if(!$stip && !$sbill && !empty($bill) && $bill > 0 && $tip > 0)
+			if(empty($stip) && empty($sbill) && empty($tmp_split) && !empty($bill) && $bill > 0 && $tip > 0)
 			{
+				if($tip > 1)
+				$tip = $tip/100;
 			?>
 			<dl>
 				<dt>Tip</dt><dd><?php echo "$"; printf("%.2f", $tip*$bill); ?></dd>
@@ -61,8 +62,8 @@
 			<?php 
 			if(isset($_POST['num_people'])) 
 			{
-				$split = $_POST['num_people'];
-				if($split > 1)
+				
+				if($split > 1 && empty($tmp_split)) 
 				{
 					?><br><dt>Tip per person</dt><dd><?php echo " $"; printf("%.2f", ($tip*$bill)/$split);?></dd>
 					<br><dt>Total per person</dt><dd><?php echo " $"; printf("%.2f", ($tip*$bill + $bill)/$split);?></dd><br><?php
@@ -72,10 +73,16 @@
 			</dl>
 			<?php 
 			} else {
-				if(empty($sbill) && $bill > 0){
-					echo "ERROR: Please enter a valid tip. \n ";
-				}else{
-					echo "ERROR: Please enter a valid bill. \n ";
+				if(!empty($sbill) || $bill < 0){
+					echo "ERROR: Please enter a valid bill. \r\n ";?><br><?php
+				}
+				
+				if(!empty($stip) || $tip < 0) {
+					echo "ERROR: Please enter a valid tip. \r\n ";?><br><?php
+				}
+					
+				if(!empty($tmp_split) || $split < 0) {
+					echo "ERROR: Please enter a valid number of people. \r\n";?><br><?php
 				}
 			}
 		}  ?>
